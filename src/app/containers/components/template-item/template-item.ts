@@ -19,7 +19,7 @@ import {FormsModule} from "@angular/forms";
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-template-items',
+  selector: 'app-template-item',
   standalone: true,
     imports: [
         MatCard,
@@ -43,10 +43,10 @@ import { TranslateModule } from '@ngx-translate/core';
         NgIf,
         TranslateModule
     ],
-  templateUrl: './template-items.html',
-  styleUrl: './template-items.css'
+  templateUrl: './template-item.html',
+  styleUrl: './template-item.css'
 })
-export class TemplateItems implements OnInit {
+export class TemplateItem implements OnInit {
   templateItems: Template[] = [];
   filteredTemplates: Template[] = [];
   gasSwitch: boolean = false;
