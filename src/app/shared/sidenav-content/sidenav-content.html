@@ -1,1 +1,89 @@
-<p>sidenav-content works!</p>
+<div class="sidenav-content">
+    {{ 'MENU' | translate }}
+    <mat-nav-list>
+        <ng-container *ngIf="allPrivileges">
+            <a mat-list-item [routerLink]= '"/dashboard"' routerLinkActive="active-link" (click)="closeSidenav()" >
+                <div class="list-item-content">
+                    <mat-icon>developer_board</mat-icon>
+                    {{ 'DASHBOARD' | translate }}
+                    <span class="counter">24</span>
+                </div>
+            </a>
+        </ng-container>
+        <ng-container *ngIf="groupValidator">
+            <a mat-list-item [routerLink]="'/facilities'" routerLinkActive="active-link" (click)="closeSidenav()">
+                <div class="list-item-content">
+                    <mat-icon>corporate_fare</mat-icon>
+                    {{ 'FACILITIES' | translate }}
+                </div>
+            </a>
+        </ng-container>
+        <ng-container>
+            <a mat-list-item [routerLink]="'/containers'" routerLinkActive="active-link" (click)="closeSidenav()">
+                <div class="list-item-content">
+                    <mat-icon>widgets</mat-icon>
+                    {{ 'CONTAINERS' | translate }}
+                </div>
+            </a>
+        </ng-container>
+        <ng-container *ngIf="workerValidator">
+            <a mat-list-item [routerLink]="'/workers'" routerLinkActive="active-link" (click)="closeSidenav()">
+                <div class="list-item-content">
+                    <mat-icon>person</mat-icon>
+                    {{ 'WORKERS' | translate }}
+                </div>
+            </a>
+        </ng-container>
+        <ng-container>
+            <a mat-list-item [routerLink]="'/templates'" routerLinkActive="active-link" (click)="closeSidenav()">
+                <div class="list-item-content">
+                    <mat-icon>text_snippet</mat-icon>
+                    {{ 'TEMPLATES' | translate }}
+                </div>
+            </a>
+        </ng-container>
+    </mat-nav-list>
+    <mat-divider></mat-divider>
+    {{ 'SETTINGS' | translate }}
+    <mat-nav-list>
+        <a mat-list-item [routerLink]="'/account'" routerLinkActive="active-link" (click)="closeSidenav()">
+            <div class="list-item-content">
+                <mat-icon>manage_accounts</mat-icon>
+                {{ 'ACCOUNT' | translate }}
+            </div>
+        </a>
+        <ng-container *ngIf="accountValidator">
+            <a mat-list-item [routerLink]="'/subscription'" routerLinkActive="active-link" (click)="closeSidenav()">
+                <div class="list-item-content">
+                    <mat-icon>credit_card</mat-icon>
+                    {{ 'SUBSCRIPTION' | translate }}
+                </div>
+            </a>
+        </ng-container>
+        <ng-container>
+            <a mat-list-item [routerLink]="'/notifications'" routerLinkActive="active-link" (click)="closeSidenav()">
+                <div class="list-item-content">
+                    <mat-icon>notifications</mat-icon>
+                    {{ 'NOTIFICATIONS' | translate }}
+                </div>
+            </a>
+        </ng-container>
+    </mat-nav-list>
+    <a mat-list-item (click)="openLanguageDialog()">
+        <div class="list-item-content">
+          <mat-icon>language</mat-icon>
+          {{ 'LANGUAGES' | translate }}
+        </div>
+      </a>
+      <mat-divider></mat-divider>
+
+    <mat-divider></mat-divider>
+    <mat-nav-list>
+        <a mat-list-item (click)="logout()">
+            <div class="list-item-content">
+                <mat-icon>logout</mat-icon>
+                {{ 'LOGOUT' | translate }}
+            </div>
+        </a>
+    </mat-nav-list>
+</div>
