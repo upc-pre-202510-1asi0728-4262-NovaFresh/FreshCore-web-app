@@ -1,1 +1,34 @@
-<p>facility-items works!</p>
+<div class="card-container">
+  <mat-card *ngFor="let facility of facilityItems" class="container-card">
+    <mat-card-header>
+      <h3>{{ facility.name }}</h3>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ 'FACILITY_ITEMS.LOCATION' | translate }}: {{ facility.location.city }}, {{ facility.location.state }}, {{ facility.location.country }}</p>
+      <div class="content">
+        <div class="tag">
+          <mat-icon class="material-icons-outlined">widgets</mat-icon>
+          <span>{{ 'FACILITY_ITEMS.CONTAINERS' | translate }}</span>
+        </div>
+        <span>{{ facility.containerCount }}</span>
+      </div>
+      <div class="content">
+        <div class="tag">
+          <mat-icon class="material-icons-outlined">notifications</mat-icon>
+          <span>{{ 'FACILITY_ITEMS.ALERTS' | translate }}</span>
+        </div>
+        <span>{{ facility.alerts || 0 }}</span>
+      </div>
+      <div class="content">
+        <div class="tag">
+          <mat-icon fontIcon="person"></mat-icon>
+          <span>{{ 'FACILITY_ITEMS.WORKERS' | translate }}</span>
+        </div>
+        <span>{{ facility.profileCount || 0 }}</span>
+      </div>
+      <div class="container-button">
+        <button mat-flat-button (click)="openFacilitySidenav(facility.id)">{{ 'FACILITY_ITEMS.MORE' | translate }}</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

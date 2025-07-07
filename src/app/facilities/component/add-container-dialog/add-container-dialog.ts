@@ -1,11 +1,58 @@
-import { Component } from '@angular/core';
+import {Component, Inject} from '@angular/core';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {
+  MAT_DIALOG_DATA,
+  MatDialogActions,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle
+} from "@angular/material/dialog";
+import {MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatInput} from "@angular/material/input";
+import {MatButton} from "@angular/material/button";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-container-dialog',
-  imports: [],
+  standalone: true,
+  imports: [
+    MatDialogContent,
+    ReactiveFormsModule,
+    MatDialogTitle,
+    MatFormField,
+    MatInput,
+    MatDialogActions,
+    MatButton,
+    MatLabel,
+    TranslateModule
+  ],
   templateUrl: './add-container-dialog.html',
   styleUrl: './add-container-dialog.css'
 })
 export class AddContainerDialog {
+  containerForm: FormGroup;
 
+  constructor(
+    private fb: FormBuilder,
+    public dialogRef: MatDialogRef<AddContainerDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    this.containerForm = this.fb.group({
+      accountId: [data.accountId, Validators.required],
+      groupId: [data.groupId, Validators.required],
+      code: ['', Validators.required],
+      name: ['', Validators.required],
+      description: ['', Validators.required]
+    });
+  }
+
+  onSave() {
+    if (this.containerForm.valid) {
+      this.dialogRef.close(this.containerForm.value);
+    }
+  }
+
+  onCancel(): void {
+    this.dialogRef.close();
+  }
 }
