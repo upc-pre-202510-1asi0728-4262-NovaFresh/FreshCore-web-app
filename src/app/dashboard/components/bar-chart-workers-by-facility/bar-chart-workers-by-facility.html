@@ -1,1 +1,14 @@
-<p>bar-chart-workers-by-facility works!</p>
+<div class="chart-container">
+  <canvas baseChart
+          [datasets]="[{ data: groupsChartData,label: 'Workers per Facility' ,backgroundColor: barColors}]"
+          [labels]="groupsChartLabels"
+          [options]="{ responsive: true,
+            plugins: {
+              title: {
+                display: true,
+                text: 'Number of Workers per Facility'
+              }
+            } }"
+          [type]="facilitychartType">
+  </canvas>
+</div>

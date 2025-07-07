@@ -1,1 +1,16 @@
-<p>base-chart-status-container works!</p>
+
+<div class="chart-container">
+  <canvas baseChart
+          [datasets]="[{ data: activeContainersChartData, label: 'Active Containers' }]"
+          [labels]="activeContainersChartLabels"
+          [options]="{ responsive: true,
+            plugins: {
+              title: {
+                display: true,
+                text: 'Activated and Deactivated Containers Distribution'
+              }}
+               }"
+          [type]="activeContainersChartType">
+  </canvas>
+</div>
+

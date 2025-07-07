@@ -1,1 +1,14 @@
-<p>pie-chart-privileges works!</p>
+<div class="chart-container">
+<canvas baseChart
+        [datasets]="[{ data: privilegesChartData, label: 'Privileges' }]"
+        [labels]="privilegesChartLabels"
+        [options]="{ responsive: true,
+            plugins: {
+              title: {
+                display: true,
+                text: 'Distribution of Privileges by Facility'
+              }}
+               }"
+        [type]="privilegesChartType">
+</canvas>
+</div>
