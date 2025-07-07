@@ -1,12 +1,39 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {NavigationEnd, Router, RouterOutlet} from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { ToolbarContent } from './shared/toolbar-content/toolbar-content';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { SidenavContent } from "./shared/sidenav-content/sidenav-content";
+import {filter} from "rxjs";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  standalone: true,
+  imports: [RouterOutlet, MatToolbarModule, ToolbarContent, MatDialogModule, MatSidenavModule, SidenavContent, NgIf],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
 })
-export class App {
-  protected title = 'FreshCore-web-app';
+export class AppComponent implements OnInit{
+  showLayout = true;
+
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    // Verifica la ruta actual al iniciar
+    this.showLayout = !this.isAuthRoute(this.router.url);
+
+    // Actualiza showLayout al cambiar de ruta
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        this.showLayout = !this.isAuthRoute(event.urlAfterRedirects);
+      });
+  }
+
+  private isAuthRoute(url: string): boolean {
+    const authRoutes = ['/login', '/register', '/register-company'];
+    return authRoutes.some(route => url.startsWith(route)) || url === '/page-not-found';
+  }
 }
