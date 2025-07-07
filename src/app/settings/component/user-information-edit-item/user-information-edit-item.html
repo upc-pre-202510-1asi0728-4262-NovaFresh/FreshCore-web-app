@@ -1,1 +1,23 @@
-<p>user-information-edit-item works!</p>
+<h2 mat-dialog-title>{{ 'USER_INFORMATION_EDIT_ITEM.TITLE' | translate }}</h2>
+<mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>{{ 'USER_INFORMATION_EDIT_ITEM.USERNAME' | translate }}</mat-label>
+    <input matInput [(ngModel)]="data.username">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>{{ 'USER_INFORMATION_EDIT_ITEM.NAME' | translate }}</mat-label>
+    <input matInput [(ngModel)]="data.name">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>{{ 'USER_INFORMATION_EDIT_ITEM.ID_NUMBER' | translate }}</mat-label>
+    <input matInput [(ngModel)]="data.idNumber">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>{{ 'USER_INFORMATION_EDIT_ITEM.BANK_OWNER' | translate }}</mat-label>
+    <input matInput [(ngModel)]="data.bankOwner">
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">{{ 'USER_INFORMATION_EDIT_ITEM.CANCEL' | translate }}</button>
+  <button mat-button (click)="onSave()">{{ 'USER_INFORMATION_EDIT_ITEM.SAVE' | translate }}</button>
+</mat-dialog-actions>

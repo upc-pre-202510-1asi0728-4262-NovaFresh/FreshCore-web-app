@@ -1,1 +1,16 @@
-<p>user-information-item works!</p>
+<mat-card class="user-card">
+  <mat-card-title>{{ 'USER_INFORMATION_ITEM.TITLE' | translate }}</mat-card-title>
+  <mat-card-content>
+    <div class="info-row">
+      <span>{{ 'USER_INFORMATION_ITEM.USERNAME' | translate }}</span>
+      <span *ngIf="user">{{ user.username }}</span>
+    </div>
+    <div class="info-row">
+      <span>{{ 'USER_INFORMATION_ITEM.NAME' | translate }}</span>
+      <span *ngIf="user">{{ user.firstName + " " + user.lastName }}</span>
+    </div>
+  </mat-card-content>
+  <mat-card-actions class="actions">
+    <button mat-button (click)="openChangePasswordModal()">{{ 'USER_INFORMATION_ITEM.CHANGE_PASSWORD' | translate }}</button>
+  </mat-card-actions>
+</mat-card>

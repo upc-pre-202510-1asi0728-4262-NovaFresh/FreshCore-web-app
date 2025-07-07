@@ -1,1 +1,51 @@
-<p>subscription-dialog works!</p>
+<h2 mat-dialog-title>{{ 'SUBSCRIPTION_DIALOG.TITLE' | translate }}</h2>
+<mat-dialog-content>
+  <p>
+    {{ 'SUBSCRIPTION_DIALOG.DESCRIPTION' | translate }}
+  </p>
+  <ul class="flex flex-col gap-2">
+    <li class="flex flex-col gap-0">
+      <span class="mat-label-large">{{ 'SUBSCRIPTION_DIALOG.FACILITIES' | translate }}</span>
+      <span class="mat-body-medium">
+        {{ 'SUBSCRIPTION_DIALOG.USED_OUT_OF' | translate: { currentUsage: accountUsage.facilities.currentUsage, currentPlanLimit: accountUsage.facilities.currentPlanLimit } }}
+      </span>
+      <span class="mat-body-medium">
+        {{
+          accountUsage.facilities.currentUsage < accountUsage.facilities.lowerPlanLimit
+            ? ('SUBSCRIPTION_DIALOG.NONE_AFFECTED' | translate)
+            : ('SUBSCRIPTION_DIALOG.LOSE_ACCESS_TO' | translate: { count: accountUsage.facilities.currentUsage - accountUsage.facilities.lowerPlanLimit, item: 'facilities' })
+        }}
+      </span>
+    </li>
+    <li class="flex flex-col gap-0">
+      <span class="mat-label-large">{{ 'SUBSCRIPTION_DIALOG.CONTAINERS' | translate }}</span>
+      <span class="mat-body-medium">
+        {{ 'SUBSCRIPTION_DIALOG.USED_OUT_OF' | translate: { currentUsage: accountUsage.containers.currentUsage, currentPlanLimit: accountUsage.containers.currentPlanLimit } }}
+      </span>
+      <span class="mat-body-medium">
+        {{
+          accountUsage.containers.currentUsage < accountUsage.containers.lowerPlanLimit
+            ? ('SUBSCRIPTION_DIALOG.NONE_AFFECTED' | translate)
+            : ('SUBSCRIPTION_DIALOG.LOSE_ACCESS_TO' | translate: { count: accountUsage.containers.currentUsage - accountUsage.containers.lowerPlanLimit, item: 'containers' })
+        }}
+      </span>
+    </li>
+    <li class="flex flex-col gap-0">
+      <span class="mat-label-large">{{ 'SUBSCRIPTION_DIALOG.USERS' | translate }}</span>
+      <span class="mat-body-medium">
+        {{ 'SUBSCRIPTION_DIALOG.USED_OUT_OF' | translate: { currentUsage: accountUsage.users.currentUsage, currentPlanLimit: accountUsage.users.currentPlanLimit } }}
+      </span>
+      <span class="mat-body-medium">
+        {{
+          accountUsage.users.currentUsage < accountUsage.users.lowerPlanLimit
+            ? ('SUBSCRIPTION_DIALOG.NONE_AFFECTED' | translate)
+            : ('SUBSCRIPTION_DIALOG.LOSE_ACCESS_TO' | translate: { count: accountUsage.users.currentUsage - accountUsage.users.lowerPlanLimit, item: 'users' })
+        }}
+      </span>
+    </li>
+  </ul>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>{{ 'SUBSCRIPTION_DIALOG.CANCEL' | translate }}</button>
+  <button mat-button>{{ 'SUBSCRIPTION_DIALOG.DOWNGRADE' | translate }}</button>
+</mat-dialog-actions>

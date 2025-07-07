@@ -1,1 +1,6 @@
-<p>notification-timefilter works!</p>
+<mat-form-field>
+  <mat-label>{{ 'NOTIFICATION_TIMEFILTER.CHOOSE_DATE' | translate }}</mat-label>
+  <input matInput [matDatepicker]="picker" (dateChange)="onDateChange($event)">
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>

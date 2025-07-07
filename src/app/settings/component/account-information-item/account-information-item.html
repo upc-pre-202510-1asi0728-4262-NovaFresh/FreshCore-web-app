@@ -1,1 +1,29 @@
-<p>account-information-item works!</p>
+<mat-card class="user-card">
+  <mat-card-title>{{ 'ACCOUNT_INFORMATION_ITEM.TITLE' | translate }}</mat-card-title>
+  <mat-card-content>
+    <div class="info-row">
+      <span>{{ 'ACCOUNT_INFORMATION_ITEM.BUSINESS_NAME' | translate }}</span>
+      <span *ngIf="account">{{ account.businessName }}</span>
+    </div>
+    <div class="info-row">
+      <span>{{ 'ACCOUNT_INFORMATION_ITEM.SUBSCRIPTION_TIER' | translate }}</span>
+      <span>Advance</span>
+    </div>
+    <div class="info-row">
+      <span>{{ 'ACCOUNT_INFORMATION_ITEM.IDENTIFICATION_NUMBER' | translate }}</span>
+      <span *ngIf="account">{{ account.businessId }}</span>
+    </div>
+      <div class="info-row">
+          <span>{{ 'USER_INFORMATION_ITEM.BANK_OWNER' | translate }}</span>
+          <span>Sofía Pérez</span>
+      </div>
+  </mat-card-content>
+    <!--
+  <div *ngIf="validator">
+    <mat-card-actions class="actions">
+      <button mat-button>{{ 'ACCOUNT_INFORMATION_ITEM.MANAGE_SUBSCRIPTION' | translate }}</button>
+    </mat-card-actions>
+  </div>
+
+  -->
+</mat-card>

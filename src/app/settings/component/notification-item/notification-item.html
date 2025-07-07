@@ -1,1 +1,22 @@
-<p>notification-item works!</p>
+<!--
+<div class="notification-filter">
+  <app-notification-timefilter (dateChange)="onDateChange($event)"></app-notification-timefilter>
+  <app-notification-filter (filter)="filterNotifications($event)"></app-notification-filter>
+</div>
+
+-->
+
+<div *ngFor="let notification of notifications">
+  <mat-card
+    class="notification-card"
+  >
+    <mat-card-header>
+      <mat-card-title>{{ this.getNotificationType(notification) }}</mat-card-title>
+      <mat-card-subtitle>{{ notification.issuedAt | date: 'short' }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p> {{this.getNotificationDescription(notification)}}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
