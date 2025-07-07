@@ -12,10 +12,10 @@ import {NgIf} from "@angular/common";
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, MatToolbarModule, ToolbarContent, MatDialogModule, MatSidenavModule, SidenavContent, NgIf],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  templateUrl: './app.html',
+  styleUrl: './app.css'
 })
-export class AppComponent implements OnInit{
+export class App implements OnInit{
   showLayout = true;
 
   constructor(private router: Router) {}

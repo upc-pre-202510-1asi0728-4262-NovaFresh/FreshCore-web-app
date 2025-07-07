@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { WorkerItems } from "../../components/worker-items/worker-items";
 import {WorkerDetails} from "../../components/worker-details/worker-details";
-import {FacilityDetailsComponent} from "../../../facilities/components/facility-details/facility-details.component";
-import {FacilityTabComponent} from "../../../facilities/components/facility-tab/facility-tab.component";
+import {FacilityDetails} from "../../../facilities/component/facility-details/facility-details";
+import {FacilityTab} from "../../../facilities/component/facility-tab/facility-tab";
 import {WorkerTab} from "../../components/worker-tab/worker-tab";
 
 @Component({
@@ -11,8 +11,8 @@ import {WorkerTab} from "../../components/worker-tab/worker-tab";
   imports: [
     WorkerItems,
     WorkerDetails,
-    FacilityDetailsComponent,
-    FacilityTabComponent,
+    FacilityDetails,
+    FacilityTab,
     WorkerTab
   ],
   templateUrl: './worker.html',

@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import {TemplateItems} from "../../components/template-items/template-items";
+import {TemplateItem} from "../../components/template-item/template-item";
 import {TemplateDetails} from "../../components/template-details/template-details";
 
 @Component({
   selector: 'app-template',
   standalone: true,
     imports: [
-        TemplateItems,
+        TemplateItem,
         TemplateDetails
     ],
   templateUrl: './template.html',

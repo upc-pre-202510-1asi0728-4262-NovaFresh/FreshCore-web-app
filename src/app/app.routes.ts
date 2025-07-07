@@ -1,7 +1,7 @@
 import {RouterModule, Routes} from '@angular/router';
 import {Container} from "./containers/page/container/container";
 import {NgModule} from "@angular/core";
-import {TemplateItems} from "./containers/components/template-items/template-items";
+import {TemplateItem} from "./containers/components/template-item/template-item";
 import {Facility} from "./facilities/page/facility/facility";
 import {Worker} from "./workers/page/worker/worker";
 import { Notifications } from './settings/page/notifications/notifications';
