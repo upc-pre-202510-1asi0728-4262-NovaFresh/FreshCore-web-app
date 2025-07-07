@@ -1,1 +1,24 @@
-<p>register-owner-company-form works!</p>
+<form (submit)="createAccount()" class="form-container">
+  <h2>{{ 'REGISTER' | translate }}</h2>
+  <div class="input-field">
+    <label for="business-name">{{ 'BUSINESS_NAME' | translate }}</label>
+    <input
+      id="business-name"
+      name="business-name"
+      [(ngModel)]="account.businessName"
+      type="text"
+      required
+    />
+  </div>
+  <div class="input-field">
+    <label for="business-id">{{ 'BUSINESS_ID' | translate }}</label>
+    <input
+      id="business-id"
+      name="business-id"
+      [(ngModel)]="account.businessId"
+      type="text"
+      required
+    />
+  </div>
+  <button class="register-button" type="submit">{{ 'REGISTER' | translate }}</button>
+</form>
