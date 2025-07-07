@@ -1,1 +1,58 @@
-<p>container-details works!</p>
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="over" [(opened)]="opened" class="sidenav" position="end">
+        <mat-icon class="close" (click)="sidenav.close()">arrow_back</mat-icon>
+
+        <div class="title">
+            <h2>{{ container?.name }}</h2>
+            <span>{{ container?.status }}</span>
+        </div>
+        <p style="font-weight: 500; margin-bottom: 0; font-size: 14px">{{ 'CONTAINER_DETAILS.DESCRIPTION' | translate }}</p>
+        <p style="margin-top: 0; letter-spacing: 1px; font-size: 16px;">{{ container?.description }}</p>
+
+        <mat-divider></mat-divider>
+
+        <h3>{{ 'CONTAINER_DETAILS.TEMPLATE_CONFIGURATION' | translate }}</h3>
+        <div *ngIf="container?.minTemp != null && container?.minHumidity != null; else noTemplate">
+            <div class="container">
+                <p>{{ 'CONTAINER_DETAILS.TEMPERATURE' | translate }}</p>
+                <p>{{ (container?.minTemp | number: digitInfo) + ' °C' }} - {{ (container?.maxTemp | number: digitInfo) + ' °C' }}</p>
+            </div>
+            <div class="container">
+                <p>{{ 'CONTAINER_DETAILS.HUMIDITY' | translate }}</p>
+                <p>{{ (container?.minHumidity | number: digitInfo)  + ' %' }} - {{ (container?.maxHumidity | number: digitInfo) + ' %' }}</p>
+            </div>
+            <div class="container">
+                <p>{{ 'CONTAINER_DETAILS.OXYGEN' | translate }}</p>
+                <p>{{(container?.oxygenMin | number: digitInfo) + ' %'}} - {{(container?.oxygenMax | number: digitInfo) + ' %'}}</p>
+            </div>
+            <div class="container">
+                <p>{{ 'CONTAINER_DETAILS.CARBON_DIOXIDE' | translate }}</p>
+                <p>{{(container?.dioxideMin | number: digitInfo) + ' %'}} - {{(container?.dioxideMax | number: digitInfo) + ' %'}}</p>
+            </div>
+            <div class="container">
+                <p>{{ 'CONTAINER_DETAILS.ETHYLENE' | translate }}</p>
+                <p>{{(container?.ethyleneMin | number: digitInfo) + ' ppm'}} - {{(container?.ethyleneMax | number: digitInfo) + ' ppm'}}</p>
+            </div>
+            <div class="container">
+                <p>{{ 'CONTAINER_DETAILS.AMMONIA' | translate }}</p>
+                <p>{{(container?.ammoniaMin | number: digitInfo) + ' ppm'}} - {{(container?.ammoniaMax | number: digitInfo) + ' ppm'}}</p>
+            </div>
+            <div class="container">
+                <p>{{ 'CONTAINER_DETAILS.SULFUR_DIOXIDE' | translate }}</p>
+                <p>{{(container?.sulfurDioxideMin | number: digitInfo) + ' ppm'}} - {{(container?.sulfurDioxideMax | number: digitInfo) + ' ppm'}}</p>
+            </div>
+        </div>
+
+        <div class="container-button">
+            <button mat-stroked-button (click)="changeTemplate()" >{{ 'CONTAINER_DETAILS.CHANGE_TEMPLATE' | translate }}</button>
+            <button mat-flat-button (click)="openDialog()">{{ 'CONTAINER_DETAILS.MANUAL_EDIT' | translate }}</button>
+        </div>
+
+        <ng-template #noTemplate>
+            <p>{{ 'CONTAINER_DETAILS.NO_TEMPLATE_CONFIGURATION' | translate }}</p>
+        </ng-template>
+    </mat-sidenav>
+    <mat-sidenav-content class="sidenav-content">
+        <ng-content></ng-content>
+    </mat-sidenav-content>
+</mat-sidenav-container>

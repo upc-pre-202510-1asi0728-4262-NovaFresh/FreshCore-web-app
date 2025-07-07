@@ -1,1 +1,30 @@
-<p>template-details works!</p>
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="over" [(opened)]="opened" class="sidenav" position="end">
+        <mat-icon class="close" (click)="sidenav.close()">arrow_back</mat-icon>
+
+        <div class="title">
+            <h2>{{ template?.name }}</h2>
+            <p>{{getCategory(template?.category)}}</p>
+        </div>
+        <mat-divider></mat-divider>
+
+        <h3>{{ 'TEMPLATE_DETAILS.SELECT_CONTAINERS' | translate }}</h3>
+        <mat-selection-list [(ngModel)]="selectedContainers" class="selection">
+            <mat-list-option *ngFor="let container of containerItems" [value]="container">
+                <div class="data-container">
+                    <span class="data-name">{{ container.name }}</span>
+                    <span class="data-value">{{ container.value }}</span>
+                </div>
+            </mat-list-option>
+        </mat-selection-list>
+
+        <div class="container-button">
+            <button mat-flat-button (click)="applyTemplateToContainers()">
+                {{ 'TEMPLATE_DETAILS.APPLY_TEMPLATE' | translate }}
+            </button>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content class="sidenav-content">
+        <ng-content></ng-content>
+    </mat-sidenav-content>
+</mat-sidenav-container>

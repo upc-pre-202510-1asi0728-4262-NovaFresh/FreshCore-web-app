@@ -1,1 +1,11 @@
-<p>container-tab works!</p>
+<div class="space">
+    <h1 id="title">{{ 'CONTAINER_TAB.TITLE' | translate }}</h1>
+    <mat-tab-group class="tab">
+        <mat-tab label="{{ 'CONTAINER_TAB.ALL_CONTAINERS' | translate }}">
+            <app-container-item [containerItems]="allContainers"></app-container-item>
+        </mat-tab>
+        <mat-tab label="{{ 'CONTAINER_TAB.ACTIVE_CONTAINERS' | translate }}">
+            <app-container-item [containerItems]="activeContainers"></app-container-item>
+        </mat-tab>
+    </mat-tab-group>
+</div>

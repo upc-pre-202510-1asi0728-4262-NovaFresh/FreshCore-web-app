@@ -1,11 +1,60 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatCard, MatCardContent, MatCardHeader } from "@angular/material/card";
+import {DecimalPipe, NgClass, NgForOf} from "@angular/common";
+import { ContainerServiceService } from "../../service/container-service.service";
+import { ContainerDetails } from "../container-details/container-details";
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {Container} from "../../model/container-model/container.entity";
+import { formatDistanceToNow } from 'date-fns';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-container-item',
-  imports: [],
+  standalone: true,
+  imports: [
+    MatCard,
+    MatCardContent,
+    MatCardHeader,
+    NgForOf,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    NgClass,
+    TranslateModule,
+    DecimalPipe
+  ],
   templateUrl: './container-item.html',
-  styleUrl: './container-item.css'
+  styleUrls: ['./container-item.css']
 })
-export class ContainerItem {
+export class ContainerItem implements OnInit {
 
+  @Input() containerItems: Container[] = [];
+  isLoading = false;
+  digitInfo = '1.2-2';
+
+  constructor(private sidenavComponent: ContainerDetails, private containerServiceService: ContainerServiceService) { }
+
+  ngOnInit(): void {}
+
+  openContainerSidenav(containerId: number) {
+    this.isLoading = true;
+    Promise.resolve(this.sidenavComponent.loadContainer(containerId)).finally(() => {
+      this.isLoading = false;
+    });
+  }
+
+  getLastSync(container: Container): string {
+    if (!container.lastSync || container.lastSync === "0001-01-01T00:00:00") {
+      return 'never'; // Handle cases where the date is invalid or never synced
+    }
+
+    const lastSyncDate = new Date(container.lastSync);
+    const timeAgo = formatDistanceToNow(lastSyncDate, { addSuffix: true });
+
+    if (timeAgo.includes('seconds') || timeAgo.includes('less than a minute')) {
+      return 'just now'; // Friendly message for very recent times
+    }
+
+    return timeAgo;
+  }
 }

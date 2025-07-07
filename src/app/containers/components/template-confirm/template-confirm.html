@@ -1,1 +1,8 @@
-<p>template-confirm works!</p>
+<h2 mat-dialog-title>{{ 'TEMPLATE_CONFIRM.TITLE' | translate }}</h2>
+<mat-dialog-content>
+  <p>{{ data.message }}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">{{ 'TEMPLATE_CONFIRM.CANCEL' | translate }}</button>
+  <button mat-button (click)="onConfirm()">{{ 'TEMPLATE_CONFIRM.YES' | translate }}</button>
+</mat-dialog-actions>
